@@ -1,6 +1,8 @@
 package com.photoapp.users.dto;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotNull;
@@ -24,6 +26,7 @@ public class UserDto implements Serializable {
 
 	private String password;
 	private String userId;
+	private List<AlbumsDTO> albums = new ArrayList<>();
 
 	public String getUserId() {
 		return userId;
@@ -63,6 +66,14 @@ public class UserDto implements Serializable {
 
 	public void setEmail(String email) {
 		this.email = email;
+	}
+
+	public List<AlbumsDTO> getAlbums() {
+		return albums;
+	}
+
+	public void setAlbums(List<AlbumsDTO> albums) {
+		this.albums = albums;
 	}
 
 }
