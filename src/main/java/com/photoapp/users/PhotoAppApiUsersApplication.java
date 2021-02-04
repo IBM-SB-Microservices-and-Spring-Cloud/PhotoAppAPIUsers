@@ -8,6 +8,7 @@ import org.springframework.cloud.client.loadbalancer.LoadBalanced;
 import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
 import org.springframework.cloud.openfeign.EnableFeignClients;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Profile;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.client.RestTemplate;
 
@@ -42,8 +43,14 @@ public class PhotoAppApiUsersApplication {
 	}
 
 	@Bean
+	@Profile("production")
 	public Logger.Level feignLoggerLevel() {
-		return Logger.Level.FULL;
+		return Logger.Level.NONE;
 	}
 
+	@Bean
+	@Profile("!production")
+	public Logger.Level feignDevRQALoggerLevel() {
+		return Logger.Level.FULL;
+	}	
 }

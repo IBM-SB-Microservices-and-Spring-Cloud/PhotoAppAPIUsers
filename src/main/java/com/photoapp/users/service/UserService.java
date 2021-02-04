@@ -12,4 +12,13 @@ public interface UserService extends UserDetailsService {
 
 	UserDto getUserByEmail(String userName);
 
+	/**
+	 * 
+	 * @param userId
+	 * @return
+	 */
+	UserDto getUser(String userId);
+
+	String getVersion();
+
 }
