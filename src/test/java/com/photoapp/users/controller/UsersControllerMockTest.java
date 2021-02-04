@@ -1,4 +1,4 @@
-package com.photoapp.users;
+package com.photoapp.users.controller;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
