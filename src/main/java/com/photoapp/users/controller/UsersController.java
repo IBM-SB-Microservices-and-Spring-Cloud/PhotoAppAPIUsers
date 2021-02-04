@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.photoapp.users.dto.UserDto;
-import com.photoapp.users.service.UserServiceImpl;
+import com.photoapp.users.service.UserService;
 
 @RestController
 @RequestMapping(value = "/users")
@@ -28,7 +28,7 @@ public class UsersController {
 	ModelMapper modelMapper;
 
 	@Autowired
-	UserServiceImpl userServiceImpl;
+	UserService userService;
 
 	@GetMapping(value = "/version")
 	public String getVersion() {
@@ -38,13 +38,14 @@ public class UsersController {
 
 	@PostMapping
 	public ResponseEntity<UserDto> createUser(@Valid @RequestBody UserDto userDto) {
-		UserDto retUDto = userServiceImpl.createUser(userDto);
+		UserDto retUDto = userService.createUser(userDto);
 		return new ResponseEntity<UserDto>(retUDto, HttpStatus.CREATED);
 	}
-	
+
 	@GetMapping(path = "/{userId}")
-	public ResponseEntity<UserDto> getUser(@PathVariable("userId") String userId){
-		return userServiceImpl.getUser(userId);
+	public ResponseEntity<UserDto> getUser(@PathVariable("userId") String userId) {
+		UserDto userDto = userService.getUser(userId);
+		return new ResponseEntity<UserDto>(userDto, HttpStatus.OK);
 	}
 
 }
